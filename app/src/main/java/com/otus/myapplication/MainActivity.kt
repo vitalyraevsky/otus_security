@@ -35,15 +35,28 @@ class MainActivity : AppCompatActivity() {
 
         val secure = Security()
         val keys = Keys(applicationContext)
-        // Хеширование
-        secure.md5("password")
-
-        // Хранилища
         val masterKey = keys.getMasterKey(MasterKey.KeyScheme.AES256_GCM)
-        val preferences = PreferencesUtils(applicationContext, masterKey)
-        preferences.set("key", "value")
 
-        // Биометрия
+        binding.hashMd5Button.setOnClickListener {
+            val text = binding.hashText.text.toString()
+            val hash = secure.md5(text)
+            Toast.makeText(this, hash, Toast.LENGTH_LONG).show()
+        }
+        binding.hashSha256Button.setOnClickListener {
+            val text = binding.hashText.text.toString()
+            val hash = secure.sha256(text)
+            Toast.makeText(this, hash, Toast.LENGTH_LONG).show()
+        }
+
+        val preferences = PreferencesUtils(applicationContext, masterKey)
+        binding.setPreferenceButton.setOnClickListener {
+            val value = binding.storageText.text
+            preferences.set("key", value.toString())
+        }
+        binding.getPreferenceButton.setOnClickListener {
+            binding.storageText.setText(preferences.get("key"))
+        }
+
         binding.weakBiometryButton.setOnClickListener {
             val success = BiometricManager.from(this)
                 .canAuthenticate(BIOMETRIC_WEAK) == BIOMETRIC_SUCCESS

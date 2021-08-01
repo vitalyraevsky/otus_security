@@ -27,4 +27,8 @@ class PreferencesUtils(
             apply()
         }
     }
+
+    fun get(key: String): String {
+        return sharedPreferences.getString(key, "").orEmpty()
+    }
 }
