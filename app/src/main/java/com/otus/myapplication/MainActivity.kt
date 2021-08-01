@@ -2,6 +2,7 @@ package com.otus.myapplication
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
@@ -63,6 +64,8 @@ class MainActivity : AppCompatActivity() {
                         Log.e("AuthPromptFailure", e.message ?: "no message")
                     }
                 }
+            } else {
+                Toast.makeText(this, "Biometry not supported", Toast.LENGTH_LONG).show()
             }
         }
         binding.strongBiometryButton.setOnClickListener {
@@ -91,6 +94,8 @@ class MainActivity : AppCompatActivity() {
                         Log.e("AuthPromptFailure", e.message ?: "no message")
                     }
                 }
+            } else {
+                Toast.makeText(this, "Biometry not supported", Toast.LENGTH_LONG).show()
             }
         }
     }

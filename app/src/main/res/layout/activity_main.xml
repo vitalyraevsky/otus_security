@@ -8,36 +8,164 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/hash_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/hash_section"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/TextAppearance.MaterialComponents.Headline6" />
 
+    <EditText
+        android:id="@+id/hash_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hash_section" />
+
+    <Button
+        android:id="@+id/hash_md5_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/md5_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hash_text" />
+
+    <Button
+        android:id="@+id/hash_sha256_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sha256_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hash_text" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/hash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="hash_section,hash_text,hash_md5_button,hash_sha256_button" />
+
+    <TextView
+        android:id="@+id/crypto_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/crypto_section"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hash"
+        style="@style/TextAppearance.MaterialComponents.Headline6" />
+
+    <EditText
+        android:id="@+id/crypto_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crypto_section" />
+
+    <Button
+        android:id="@+id/crypto_encrypt_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/encrypt_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crypto_text" />
+
+    <Button
+        android:id="@+id/crypto_decrypt_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/decrypt_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crypto_text" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/crypto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="crypto_section,crypto_text,crypto_encrypt_button,crypto_decrypt_button" />
+
+    <TextView
+        android:id="@+id/storage_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/storage_section"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crypto"
+        style="@style/TextAppearance.MaterialComponents.Headline6" />
+
+    <EditText
+        android:id="@+id/storage_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/preference_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storage_section" />
+
+    <Button
+        android:id="@+id/set_preference_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/set_preference_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storage_text" />
+
+    <Button
+        android:id="@+id/get_preference_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/get_preference_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storage_text" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/storage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="storage_section,storage_text,set_preference_button,get_preference_button" />
 
     <TextView
         android:id="@+id/biometry_section"
-        style="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/biometry_section"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/storage"
+        style="@style/TextAppearance.MaterialComponents.Headline6" />
 
     <Button
         android:id="@+id/strong_biometry_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/strong_label"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/biometry_section" />
 
     <Button
         android:id="@+id/weak_biometry_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/weak_label"
-        app:layout_constraintEnd_toEndOf="@+id/strong_biometry_button"
-        app:layout_constraintStart_toStartOf="@+id/strong_biometry_button"
-        app:layout_constraintTop_toBottomOf="@+id/strong_biometry_button" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/biometry_section" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/biometry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="biometry_section,strong_biometry_button,weak_biometry_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

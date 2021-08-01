@@ -6,7 +6,7 @@ The project was created exclusively for OTUS training materials.
 
 The project consists of three main sections:
 
--- `biometrics` -
+-- `biometrics` - 
 -- `crypto` -
 -- `storage` -
 
