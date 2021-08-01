@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Securing storage</string>
+
+    <string name="hash_section">Hash functions</string>
+    <string name="md5_label">MD5</string>
+    <string name="sha256_label">SHA256</string>
+
+    <string name="crypto_section">Crypto functions</string>
+    <string name="encrypt_label">Encrypt</string>
+    <string name="decrypt_label">Decrypt</string>
+
+    <string name="signature_section">Signature</string>
+    <string name="create_label">Create</string>
+    <string name="verify_label">Verify</string>
+
+    <string name="storage_section">Storage</string>
+
+    <string name="preference_label">Preference</string>
+    <string name="set_preference_label">Set</string>
+    <string name="get_preference_label">Get</string>
+
+    <string name="file_label">File</string>
+    <string name="save_file_label">Save</string>
+    <string name="read_file_label">Read</string>
+
+    <string name="biometry_section">Biometry</string>
+    <string name="strong_label">Strong</string>
+    <string name="weak_label">Weak</string>
+</resources>
