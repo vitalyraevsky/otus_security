@@ -135,7 +135,7 @@ class Keys(
     }
 
     private fun getRsaPublicKey(): PublicKey {
-        return keyStore.getCertificate(RSA_KEY_ALIAS).publicKey as? PublicKey ?: generateRsaSecretKey().public
+        return keyStore.getCertificate(RSA_KEY_ALIAS)?.publicKey?: generateRsaSecretKey().public
     }
 
     private fun generateRsaSecretKey(): KeyPair {

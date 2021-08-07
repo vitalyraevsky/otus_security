@@ -48,6 +48,19 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, hash, Toast.LENGTH_LONG).show()
         }
 
+        val key = keys.getAesSecretKey()
+        binding.cryptoEncryptButton.setOnClickListener {
+            val text = binding.cryptoText.text.toString()
+            val encryptedText = secure.encryptAes(text, key)
+            binding.cryptoText.setText(encryptedText)
+
+        }
+        binding.cryptoDecryptButton.setOnClickListener {
+            val text = binding.cryptoText.text.toString()
+            val decryptedText = secure.decryptAes(text, key)
+            binding.cryptoText.setText(decryptedText)
+        }
+
         val preferences = PreferencesUtils(applicationContext, masterKey)
         binding.setPreferenceButton.setOnClickListener {
             val value = binding.storageText.text
