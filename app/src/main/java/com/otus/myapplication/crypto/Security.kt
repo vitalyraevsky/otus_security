@@ -10,7 +10,7 @@ import javax.crypto.Mac
 import javax.crypto.spec.GCMParameterSpec
 
 private const val RSA_RANSFORMATION = "RSA/ECB/PKCS1Padding"
-private const val AES_TRANSFORMATION = "AES/ECB/PKCS7Padding"
+private const val AES_TRANSFORMATION = "AES/CBC/PKCS5Padding"
 
 class Security {
 
