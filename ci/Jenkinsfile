@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage("init") {
             steps {
-                sh "chmod +x gradlew"
+                sh "chmod +x ci/prepare_container.sh"
                 sh "ci/prepare_container.sh"
                 sh "./gradlew"
             }
