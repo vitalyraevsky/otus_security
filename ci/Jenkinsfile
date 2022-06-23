@@ -36,7 +36,7 @@ pipeline {
     }
 }
 
-def prepareProp {
+def prepareProp() {
     def propPath = "/.keystore/"
     sh "mkdir -p ${env.HOME}${propPath}"
     withCredentials([file(credentialsId: 'prop', variable: 'prop')]) {
