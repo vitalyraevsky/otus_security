@@ -40,7 +40,7 @@ def prepareProp() {
     def propPath = "/.keystore/"
     sh "mkdir -p ${env.HOME}${propPath}"
     withCredentials([file(credentialsId: 'prop', variable: 'prop')]) {
-        sh "cp -f ${keystore} ${env.HOME}${propPath}properties."
+        sh "cp -f ${prop} ${env.HOME}${propPath}properties."
     }
     withCredentials([file(credentialsId: 'keystore', variable: 'keystore')]) {
         sh "cp -f ${keystore} ${env.HOME}${propPath}keystore.jks"
