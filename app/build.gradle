@@ -3,6 +3,8 @@ plugins {
     id 'kotlin-android'
 }
 
+apply from: "$project.rootDir/ci/load_prop.gradle"
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -15,8 +17,25 @@ android {
         versionName "1.0"
     }
 
-    buildTypes {
+    signingConfigs {
+        debug {
+            storeFile configKeystoreDebugFile
+        }
         release {
+            storeFile configKeystoreFile
+            storePassword configKeystorePassword
+            keyAlias configKeyAlias
+            keyPassword configKeyPassword
+        }
+    }
+
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

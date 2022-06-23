@@ -1,0 +1,18 @@
+ext.configKeystoreDebugFile = file("$project.rootDir/ci/debug.jks")
+ext.configKeystoreFile = ""
+ext.configKeystorePassword = ""
+ext.configKeyPassword = ""
+ext.configKeyAlias = ""
+
+file(System.getenv('HOME') + "/.keystore/properties").with { it ->
+    if(it.exists()) {
+        def prop = new Properties()
+        prop.load(new FileInputStream(it))
+        ext.configKeystoreFile = prop('storeFile')
+        ext.configKeystorePassword = prop('storePassword')
+        ext.configKeyPassword = prop('keyPassword')
+        ext.configKeyAlias = prop('keyAlias')
+    } else {
+        ext.configKeystoreFile = configKeystoreDebugFile
+    }
+}
