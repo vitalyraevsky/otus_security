@@ -1,0 +1,34 @@
+#!groovy
+pipeline {
+    agent {
+        docker {
+            image 'android-otus'
+            args '-it --memory=12g --cpus=8 -e PASSPHRASE=${PASSPHRASE}'
+        }
+    }
+    stages {
+        stage("init") {
+            steps {
+                sh "chmod +x gradlew"
+            }
+        }
+        stage("build") {
+            steps {
+                sh "./gradlew app:assembleDebug"
+            }
+        }
+        stage("deploy") {
+            steps {
+                archiveArtifacts(artifacts: "app/build/**", allowEmptyArchive: true)
+            }
+        }
+    }
+    post {
+       success{
+            sh "echo 'success'"
+       }
+       failure{
+            sh "echo 'failure'"
+       }
+    }
+}
