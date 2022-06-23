@@ -11,6 +11,7 @@ pipeline {
             steps {
                 sh "chmod +x ci/prepare_container.sh"
                 sh "ci/prepare_container.sh"
+                prepareProp()
                 sh "./gradlew"
             }
         }
@@ -36,7 +37,7 @@ pipeline {
 }
 
 def prepareProp {
-    def propPath = ""/.keystore/"
+    def propPath = "/.keystore/"
     sh "mkdir -p ${env.HOME}${propPath}"
     withCredentials([file(credentialsId: 'prop', variable: 'prop')]) {
         sh "cp -f ${keystore} ${env.HOME}${propPath}properties."
