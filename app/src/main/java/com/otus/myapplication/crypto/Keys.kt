@@ -26,13 +26,13 @@ private const val KEY_PROVIDER = "AndroidKeyStore"
 private const val KEY_LENGTH = 256
 
 private const val RSA_ALGORITHM = "RSA"
-private const val RSA_KEY_ALIAS = "RSA_DEMO"
+private const val RSA_KEY_ALIAS = "RSA_OTUS_DEMO"
 private const val RSA_MODE_LESS_THAN_M = "RSA/ECB/PKCS1Padding"
 private const val SHARED_PREFERENCE_NAME = "RSAEncryptedKeysSharedPreferences"
 private const val ENCRYPTED_KEY_NAME = "RSAEncryptedKeysKeyName"
 
 private const val AES_ALGORITHM = "AES"
-private const val AES_KEY_ALIAS = "AES_DEMO"
+private const val AES_KEY_ALIAS = "AES_OTUS_DEMO"
 
 class Keys(
     private val applicationContext: Context
@@ -65,7 +65,7 @@ class Keys(
         return encryptedKeyBase64Encoded?.let {
             val encryptedKey = Base64.decode(encryptedKeyBase64Encoded, Base64.DEFAULT)
             val key = rsaDecryptKey(encryptedKey)
-            SecretKeySpec(key, "AES")
+            SecretKeySpec(key, AES_ALGORITHM)
         }
     }
 
@@ -92,12 +92,15 @@ class Keys(
         SecureRandom().run {
             nextBytes(key)
         }
-        val encryptedKeyBase64encoded = Base64.encodeToString(rsaEncryptKey(key), Base64.DEFAULT)
+        val encryptedKeyBase64encoded = Base64.encodeToString(
+            rsaEncryptKey(key),
+            Base64.DEFAULT
+        )
         sharedPreferences.edit().apply {
             putString(ENCRYPTED_KEY_NAME, encryptedKeyBase64encoded)
             apply()
         }
-        return SecretKeySpec(key, "AES")
+        return SecretKeySpec(key, AES_ALGORITHM)
     }
 
     private fun rsaEncryptKey(secret: ByteArray): ByteArray {
@@ -117,17 +120,20 @@ class Keys(
             AES_KEY_ALIAS,
             KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
         )
-            .setBlockModes(KeyProperties.BLOCK_MODE_ECB)
-            .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7)
-            .setUserAuthenticationRequired(true)
+            .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+            .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+            .setUserAuthenticationRequired(false)
             .setRandomizedEncryptionRequired(false)
+            .setKeySize(KEY_LENGTH)
             .build()
     }
 
     fun getRsaKeyPair(): KeyPair {
         val privateKey = keyStore.getKey(RSA_KEY_ALIAS, null) as? PrivateKey
         val publicKey = keyStore.getCertificate(RSA_KEY_ALIAS).publicKey
-        return privateKey?.let { KeyPair(publicKey, privateKey) } ?: generateRsaSecretKey()
+        return privateKey?.let {
+            KeyPair(publicKey, privateKey)
+        } ?: generateRsaSecretKey()
     }
 
     private fun getRsaPrivateKey(): PrivateKey {

@@ -10,11 +10,13 @@ import javax.crypto.Mac
 import javax.crypto.spec.GCMParameterSpec
 
 private const val RSA_RANSFORMATION = "RSA/ECB/PKCS1Padding"
-private const val AES_TRANSFORMATION = "AES/CBC/PKCS5Padding"
+private const val AES_TRANSFORMATION = "AES/GCM/NoPadding"
+private const val IV = "3134003223491201"
+private const val GCM_IV_LENGTH = 12
 
 class Security {
 
-    private val FIXED_IV = byteArrayOf(55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44)
+    private val FIXED_IV = IV.toByteArray()
 
     /* Хеширование
     https://developer.android.com/reference/kotlin/java/security/MessageDigest
@@ -61,7 +63,9 @@ class Security {
     }
 
     private fun getInitializationVector(): AlgorithmParameterSpec {
-        return GCMParameterSpec(128, FIXED_IV)
+        val iv = ByteArray(GCM_IV_LENGTH)
+        FIXED_IV.copyInto(iv, 0, GCM_IV_LENGTH)
+        return GCMParameterSpec(128, iv)
     }
 
     fun decryptAes(encrypted: String, key: Key): String {
