@@ -64,7 +64,7 @@ class Security {
 
     private fun getInitializationVector(): AlgorithmParameterSpec {
         val iv = ByteArray(GCM_IV_LENGTH)
-        FIXED_IV.copyInto(iv, 0, GCM_IV_LENGTH)
+        FIXED_IV.copyInto(destination = iv, destinationOffset = 0, startIndex = 0, endIndex = GCM_IV_LENGTH)
         return GCMParameterSpec(128, iv)
     }
 
