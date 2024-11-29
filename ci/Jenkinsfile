@@ -11,7 +11,7 @@ pipeline {
             steps {
                 sh "chmod +x ci/prepare_container.sh"
                 sh "ci/prepare_container.sh"
-                prepareProp()
+                //prepareProp()
                 sh "./gradlew"
             }
         }
