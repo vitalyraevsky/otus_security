@@ -2,7 +2,7 @@
 pipeline {
     agent {
         docker {
-            image 'android-otus'
+            image 'android-sdk'
             args '-it --memory=12g --cpus=8 -e PASSPHRASE=${PASSPHRASE}'
         }
     }
