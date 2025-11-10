@@ -24,6 +24,12 @@
     <string name="read_file_label">Read</string>
 
     <string name="biometry_section">Biometry</string>
-    <string name="strong_label">Strong</string>
+    <string name="bioAuth">Enter via BioAuth</string>
     <string name="weak_label">Weak</string>
+    <string name="login_section">Login section</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="token">Token</string>
+    <string name="enable_biometry_login">Enable Biometry Login</string>
 </resources>
